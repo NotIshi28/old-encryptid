@@ -12,7 +12,8 @@ const cryptSchema = new Schema(
         //level creator
         lvlCr: reqString,
         answer: reqString,
-        points: {type:Number, required: true}
+        points: {type:Number, required: true},
+        challId: {type: String, required: true}
     },
     { timestamps: true }
 );

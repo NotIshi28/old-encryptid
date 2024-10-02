@@ -16,18 +16,23 @@ router.post('/new', async (req, res) => {
     // console.log('this is body', req.body);
     // console.log('this is level', checkLevel)
     //for cryptic
+    
     if(type=='cryptic'){
         const checkLevel = await Crypt.findOne({title: title});
         if(checkLevel) {
             return res.send("Level already exists");
         }
         lvlNo = parseInt(lvlNo);
+
         const levelNum = await Crypt.find({lvlNo: lvlNo})
         console.log('this is levelNum', levelNum);
+        
         const currLevel = await Crypt.find({lvlNo: lvlNo}).sort().limit(1);
         console.log('this is currLevel', currLevel);
+        
         const maxLevel = await Crypt.find({type:'cryptic'}).sort({lvlNo: -1}).limit(1);
         console.log('this is maxLevel', maxLevel);
+        
         if(levelNum.length > 0){
             let a = currLevel[0].lvlNo;
             let  max = maxLevel[0].lvlNo

@@ -12,10 +12,14 @@
     Image: <%= cryptLvl.lvlImg  %>
     Created By: <%= cryptLvl.lvlCr  %>
     Points: <%= cryptLvl.points  %>
-    
-    <form action="/challenges/cryptic/<%= cryptLvl.lvlNo%>" method="POST">
-        <input type="text" name="answer" placeholder="answer">
-        <button type="submit">Submit</button>
-    </form>
+    <% let completedArray = JSON.parse(JSON.stringify(completed.cryptic)); %>
+    <% if (completedArray.includes(cryptLvl._id.toString())) { %>
+        Solved!
+    <% } else { %>
+        <form action="/challenges/cryptic/<%= cryptLvl.lvlNo%>" method="POST">
+            <input type="text" name="answer" placeholder="answer">
+            <button type="submit">Submit</button>
+        </form>
+    <% } %>
 </body>
 </html>
