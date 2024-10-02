@@ -11,10 +11,14 @@
     Image: <%= ctfLvl.lvlImg  %>
     Created By: <%= ctfLvl.lvlCr  %>
     Points: <%= ctfLvl.points  %>
-    
-    <form action="/challenges/ctf/<%= ctfLvl.lvlNo  %>/" method="POST">
-        <input type="text" name="answer" placeholder="answer">
-        <button type="submit">Submit</button>
-    </form>
+    <% let completedArray = JSON.parse(JSON.stringify(completed.ctf)); %>
+    <% if (completedArray.includes(ctfLvl._id.toString())) { %>
+        Solved!
+    <% } else { %>
+        <form action="/challenges/ctf/<%= ctfLvl.lvlNo%>" method="POST">
+            <input type="text" name="answer" placeholder="answer">
+            <button type="submit">Submit</button>
+        </form>
+    <% } %>
 </body>
 </html>

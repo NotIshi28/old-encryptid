@@ -6,8 +6,15 @@
     <title>Document</title>
 </head>
 <body>
+    <% let completedArray = JSON.parse(JSON.stringify(completed.ctf)); %>
+
     <% for( let i = 0; i < lvls.length; i++ ) { %>
-        <a href="/challenges/ctf/<%= lvls[i].lvlNo %>">Go to level <%= lvls[i].lvlNo %></a>
+        <a href="/challenges/ctf/<%= lvls[i].lvlNo %>" 
+            <% if (completedArray.includes(lvls[i]._id.toString())) { %>
+                style="color: green"
+            <% } %>>
+            level <%= lvls[i].lvlNo %>
+        </a>
     <% } %>
 </body>
 </html>
