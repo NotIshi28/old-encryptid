@@ -49,7 +49,7 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
         
         //logging answers acc to lvl
         let lvlLog = {
-            title: ctfLvl.title,
+            title: cryptLvl.title,
             answer: req.body.answer,
             user: req.user.username,
             timestamp: new Date().toLocaleString()
@@ -66,7 +66,7 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
             //updateing user score
             score = score+cryptLvl.points;
         
-            //update completed crypt chall details includees lvl num, title and type
+            //update completed crypt     details includees lvl num, title and type
             completedD.push({lvlNo:lvlNo, title: cryptLvl.title, type:'cryptic'});
         
             //update completed crypt chall _id
