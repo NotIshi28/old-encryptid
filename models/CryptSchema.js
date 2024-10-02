@@ -13,7 +13,7 @@ const cryptSchema = new Schema(
         lvlCr: reqString,
         answer: reqString,
         points: {type:Number, required: true},
-        challId: {type: String, required: true}
+        logs:[{title: reqString, answer:reqString, timestamp: reqString, user: reqString}],
     },
     { timestamps: true }
 );

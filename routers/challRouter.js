@@ -32,35 +32,81 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
     
     //get user
     const user = await User.findOne({username: req.user.username});
-    //checking answer
-    if(req.body.answer == cryptLvl.answer){
-        let completedD = user.completedDetail;
-        let completed = user.completed;
-        let score = user.score;
-        
-        //updateing user score
-        score = score+cryptLvl.points;
-        //update completed crypt chall details includees lvl num, title and type
-        completedD.push({lvlNo:lvlNo, title: cryptLvl.title, type:'cryptic'});
-        //update completed crypt chall _id
-        completed.cryptic.push(cryptLvl._id);
-        console.log("correct");
-        res.redirect('/challenges/cryptic');
-        
-        //updateing user details
-        await User.updateOne({username: req.user.username}, {
-            $set: {
-                completedDetail: completedD,
-                score: score,
-                completed: completed
-            }
-        }).then(console.log("yooo"))
+    
+    if(req.body.answer == '' || req.body.answer == null || req.body.answer == undefined){
+        res.redirect('/challenges/cryptic/');
     }
     else{
-        //if ans is wrong
-        const completed = req.user.completed;
-        res.render('cryptLvl', { user: req.user, cryptLvl: cryptLvl, completed: completed})
+        //logging answers entered by user
+        let log = {
+            level: lvlNo, 
+            answer: req.body.answer, 
+            timestamp: new Date().toLocaleString()
+        };
+        
+        //updating logs in user
+        user.logs.push(log);
+        
+        //logging answers acc to lvl
+        let lvlLog = {
+            title: ctfLvl.title,
+            answer: req.body.answer,
+            user: req.user.username,
+            timestamp: new Date().toLocaleString()
+        }
+
+        console.log('this is logGGG',log)
+
+        //checking answer
+        if(req.body.answer == cryptLvl.answer){
+            let completedD = user.completedDetail;
+            let completed = user.completed;
+            let score = user.score;
+            
+            //updateing user score
+            score = score+cryptLvl.points;
+        
+            //update completed crypt chall details includees lvl num, title and type
+            completedD.push({lvlNo:lvlNo, title: cryptLvl.title, type:'cryptic'});
+        
+            //update completed crypt chall _id
+            completed.cryptic.push(cryptLvl._id);
+        
+            console.log("correct");
+            res.redirect('/challenges/cryptic');
+            
+            //updateing user details
+            await User.updateOne({username: req.user.username}, {
+                $set: {
+                    completedDetail: completedD,
+                    score: score,
+                    completed: completed
+                },
+                $push: {
+                    logs: log
+                }
+            }).then(console.log("yooo"))
+
+            //update chall logs
+            await Crypt.updateOne({ lvlNo: lvlNo }, {
+                $push: {
+                    logs: lvlLog
+                }
+            });
+        }
+        else{
+            //if ans is wrong
+            const completed = req.user.completed;
+            res.render('cryptLvl', { user: req.user, cryptLvl: cryptLvl, completed: completed})
+
+            await User.updateOne({username: req.user.username}, {
+                $push: {
+                    logs: log
+                }
+            })
+        }
     }
+    
 })
 
 router.get('/ctf', async (req, res) => {

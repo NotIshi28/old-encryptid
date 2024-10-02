@@ -12,7 +12,8 @@ const ctfSchema = new Schema(
         //level creator
         lvlCr: reqString,
         answer: reqString,
-        points: {type:Number, required: true}
+        points: {type:Number, required: true},
+        logs:[{title: reqString, answer:reqString, timestamp: reqString, user: reqString}],
     },
     { timestamps: true }
 );
