@@ -23,7 +23,7 @@ function forwardAuthenticated(req, res, next) {
 
 function ensureAdminAuthenticated(req, res, next) {
   if(!req.isAuthenticated()) res.redirect('/login')
-  if(!req.user.admin) res.redirect('/')
+  if(!req.user.isAdmin) res.redirect('/')
   else return next()
 }
 
@@ -37,6 +37,7 @@ async function loginUser(req, res, next) {
       req.logIn(user, (err) => {
         if (err) throw err;
         res.redirect('/dashboard');
+        // res.redirect('/admin');
       });
     }
   })(req, res, next);

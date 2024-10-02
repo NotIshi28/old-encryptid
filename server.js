@@ -11,7 +11,13 @@ const express = require('express'),
 
 const indexRouter = require('./routers/indexRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
-    dashboardRouter = require('./routers/dashboardRouter.js')
+    dashboardRouter = require('./routers/dashboardRouter.js'),
+    adminRouter = require('./routers/adminRouter.js'),
+    challRouter = require('./routers/challRouter.js')
+
+
+
+const { ensureAuthenticated, ensureAdminAuthenticated } = require('./utils/authenticate.js');
 
 const app = express(),
     PORT = process.env.PORT || 5000;
@@ -43,7 +49,9 @@ function isAdmin(req, res, next) {
 }
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
-app.use('/dashboard', dashboardRouter)
+app.use('/dashboard', ensureAuthenticated, dashboardRouter)
+app.use('/admin', ensureAuthenticated, ensureAdminAuthenticated, adminRouter)
+app.use('/challenges', ensureAuthenticated, challRouter)
 
 
 app.listen(PORT, () => {
