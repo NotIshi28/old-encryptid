@@ -22,9 +22,17 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
     let lvlNo = req.params.lvlNo;
     let cryptLvl = await Crypt.findOne({lvlNo: lvlNo});
     console.log(req.body.answer)
+    const user = await User.findOne({username: req.user.username});
+    let completed = user.completed;
+    completed.push({lvlNo: cryptLvl.lvlNo, title: cryptLvl.title});
     if(req.body.answer == cryptLvl.answer){
         console.log("correct");
         res.redirect('/challenges/cryptic');
+        await User.updateOne({username: req.user.username}, {
+            $set: {
+                completed: completed
+            }
+        }).then(console.log("yooo"))
     }
     else{
         console.log("GALT JAWAB");
