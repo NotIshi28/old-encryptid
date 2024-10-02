@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit crypt</title>
+</head>
+<body>
+    <form action="/admin/edit/cryptic/<%=level.lvlNo%>" method="POST">
+        <input type="text" class="text" name="title" placeholder="level title" value = <%= level.title %> >
+        <input type="text" class="text" name="lvlText" placeholder="level text" value = <%= level.lvlText %> >
+        <input type="number" class="text" name="lvlNo" placeholder="level number" value = <%= level.lvlNo %> >
+        <input type="text" class="text" name="lvlCr" placeholder="level made by" value = <%= level.lvlCr %> >
+        <input type="text" class="text" name="lvlImg" placeholder="level image link" value = <%= level.lvlImg %> >
+        <input type="text" class="text" name="answer" placeholder="answer" value = <%= level.answer %> >
+        <input type="number" class="text" name="points" placeholder="points" value = <%= level.points %> >
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

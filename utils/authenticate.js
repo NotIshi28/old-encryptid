@@ -1,7 +1,7 @@
 const passport = require('passport')
 
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user.isBanned == false) {
       return next();
     }
     else res.redirect('/login');
@@ -26,6 +26,7 @@ function ensureAdminAuthenticated(req, res, next) {
   if(!req.user.isAdmin) res.redirect('/')
   else return next()
 }
+
 
 async function loginUser(req, res, next) {
   console.log(req.body.email, req.body.password)

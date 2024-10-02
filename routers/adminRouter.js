@@ -3,8 +3,12 @@ const Crypt = require('../models/CryptSchema.js');
 const Ctf = require('../models/CtfSchema.js');
 const User = require('../models/userSchema.js');
 
-router.get('/', (req, res) => {
-    res.render('admin', { user: req.user })
+router.get('/', async(req, res) => {
+    const cryptLvlLogs = await Crypt.find({}).sort({lvlNo: 1});
+    const ctfLvlLogs = await Ctf.find({}).sort({lvlNo: 1});
+    const userLogs = await User.find({}).sort({score: -1});
+
+    res.render('admin', { user: req.user, cryptLvlLogs: cryptLvlLogs, ctfLvlLogs: ctfLvlLogs, userLogs: userLogs });
 });
 
 router.get('/new', (req, res) => {
@@ -64,14 +68,15 @@ router.post('/new', async (req, res) => {
 
         //saveing the cryptic chall
         level = new Crypt({
-        type: type,
-        title: title,
-        lvlNo: lvlNo,
-        lvlText: lvlText,
-        lvlImg: lvlImg,
-        lvlCr: lvlCr,
-        answer: answer,
-        points: 100
+            type: type,
+            title: title,
+            lvlNo: lvlNo,
+            lvlText: lvlText,
+            lvlImg: lvlImg,
+            lvlCr: lvlCr,
+            answer: answer,
+            logs: [],
+            points: 100
         })
     }
 
@@ -123,20 +128,93 @@ router.post('/new', async (req, res) => {
 
         //saveing the ctf chall
         level = new Ctf({
-        type: type,
-        title: title,
-        lvlNo: lvlNo,
-        lvlText: lvlText,
-        lvlImg: lvlImg,
-        lvlCr: lvlCr,
-        answer: answer,
-        points: 100
+            type: type,
+            title: title,
+            lvlNo: lvlNo,
+            lvlText: lvlText,
+            lvlImg: lvlImg,
+            lvlCr: lvlCr,
+            answer: answer,
+            logs: [],
+            points: 100
         })
     }
     await level.save();
     res.redirect('/admin');
 });
 
+
+//cryptic
+//logging and edititng
+
+router.get('/logs/cryptic/:id', async (req, res) => {
+    const lvlNo = req.params.id
+    const level = await Crypt.findOne({lvlNo:lvlNo});
+    res.render('challLogViewerCrypt', { user: req.user, logs: level.logs, lvlNo,lvlNo });
+});
+
+
+router.get('/edit/cryptic/:id', async (req, res) => {
+    const lvlNo = req.params.id
+    const level = await Crypt.findOne({lvlNo:lvlNo});
+    console.log('this is level.lvlNo', level.lvlNo)
+    res.render('editChallCrypt', { user: req.user, level: level });
+});
+
+router.post('/edit/cryptic/:id', async (req, res) => {
+    console.log('working')
+    const lvlNo = req.params.id;
+    level = await Crypt.findOne({lvlNo:lvlNo});
+
+    await Crypt.updateOne({lvlNo: lvlNo}, {
+        $set: {
+            title: req.body.title,
+            lvlText: req.body.lvlText,
+            lvlNo: req.body.lvlNo,
+            lvlImg: req.body.lvlImg,
+            lvlCr: req.body.lvlCr,
+            answer: req.body.answer,
+            points: req.body.points
+        }
+    }).then(console.log("noway"));
+    res.redirect('/admin');
+});
+
+//ctf 
+//logging and editing
+
+router.get('/logs/ctf/:id', async (req, res) => {
+    const lvlNo = req.params.id
+    const level = await Ctf.findOne({lvlNo:lvlNo});
+    res.render('challLogViewerCtf', { user: req.user, logs: level.logs, lvlNo,lvlNo });
+});
+
+
+router.get('/edit/ctf/:id', async (req, res) => {
+    const lvlNo = req.params.id
+    const level = await Crypt.findOne({lvlNo:lvlNo});
+    console.log('this is level.lvlNo', level.lvlNo)
+    res.render('editChallCtf', { user: req.user, level: level });
+});
+
+router.post('/edit/ctf/:id', async (req, res) => {
+    console.log('working')
+    const lvlNo = req.params.id;
+    level = await Ctf.findOne({lvlNo:lvlNo});
+
+    await Ctf.updateOne({lvlNo: lvlNo}, {
+        $set: {
+            title: req.body.title,
+            lvlText: req.body.lvlText,
+            lvlNo: req.body.lvlNo,
+            lvlImg: req.body.lvlImg,
+            lvlCr: req.body.lvlCr,
+            answer: req.body.answer,
+            points: req.body.points
+        }
+    }).then(console.log("noway"));
+    res.redirect('/admin');
+});
 
 
 

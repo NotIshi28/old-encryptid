@@ -7,5 +7,60 @@
 </head>
 <body>
     <a href="/admin/new/">new chall</a>
+
+    <h2>Cryptic Levels</h2>
+<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Cryptic Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < cryptLvlLogs.length; i++) { %>
+        <tr>
+            <td>
+                <a href="/admin/logs/cryptic/<%= cryptLvlLogs[i].lvlNo %>">Level <%= cryptLvlLogs[i].lvlNo %></a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<h2>CTF Levels</h2>
+<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>CTF Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < ctfLvlLogs.length; i++) { %>
+        <tr>
+            <td>
+                <a href="/admin/logs/ctf/<%= ctfLvlLogs[i].lvlNo %>">Level <%= ctfLvlLogs[i].lvlNo %></a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<h2>Users</h2>
+<table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < userLogs.length; i++) { %>
+        <tr>
+            <td>
+                <a href="/admin/user/<%= userLogs[i]._id %>"><%= userLogs[i].username %></a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
 </body>
 </html>

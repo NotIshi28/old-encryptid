@@ -13,7 +13,8 @@ const indexRouter = require('./routers/indexRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
     adminRouter = require('./routers/adminRouter.js'),
-    challRouter = require('./routers/challRouter.js')
+    challRouter = require('./routers/challRouter.js'),
+    lbRouter = require('./routers/lbRouter.js')
 
 
 
@@ -52,6 +53,7 @@ app.use('/login', loginRouter)
 app.use('/dashboard', ensureAuthenticated, dashboardRouter)
 app.use('/admin', ensureAuthenticated, ensureAdminAuthenticated, adminRouter)
 app.use('/challenges', ensureAuthenticated, challRouter)
+app.use('/leaderboard', lbRouter)
 
 
 app.listen(PORT, () => {

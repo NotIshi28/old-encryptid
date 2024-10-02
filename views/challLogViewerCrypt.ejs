@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chall logs</title>
+</head>
+<body>
+    view chall specific logs
+
+
+    <h1>Level <%= lvlNo %></h1>
+
+    <a href="/admin/edit/cryptic/<%= lvlNo %>">edit</a>
+
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>Level Title</th>
+                <th>User</th>
+                <th>Answer</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < logs.length; i++) { %>
+            <tr>
+                <td><%= logs[i].title %></td>
+                <td><%= logs[i].user %></td>
+                <td><%= logs[i].answer %></td>
+                <td><%= logs[i].timestamp %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
