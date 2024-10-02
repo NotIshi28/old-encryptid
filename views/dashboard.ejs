@@ -4,8 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        body{
+            background-color: #111;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+        }
+        .countdown{
+            margin-left: -.5em;
+        }
+        .countdown li p {
+            margin-left: 1.5em !important;
+        }
+        .countdown li span{
+            margin-left: 2em !important;
+        }
+
+        .countdown {
+            font-size: 10vw;
+        }
+
+        .countdown {
+            color: #eee;
+            font-size: 1vw;
+            font-weight: 500;
+            justify-content: space-between;
+            display: flex;
+            list-style-type: none;
+            padding: 1em;
+            width: 35vw;
+            margin-top: 2.5vw;
+        }
+
+        .countdown li {
+            text-align: center;
+            width: 25em;
+            margin-left: -3.5em;
+        }
+        
+        .countdown li p{
+            margin-left: 1.5em;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to the dashboard</h1>
+    time left to encryptid:
+    <ul class="countdown">
+        <li><p>days</p><span id="days"></span></li>
+        <li><p>hrs</p><span id="hrs"></span></li>
+        <li><p>mins</p><span id="mins"></span></li>
+        <li style="color: #16e16e;"><p>sec</p><span id="secs"></span></li>
+    </ul>
+
+    <script>
+        var countDownDate = new Date("Nov 11, 2024 09:00:00").getTime();
+        var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hrs").innerHTML = hours;
+        document.getElementById("mins").innerHTML = minutes;
+        document.getElementById("secs").innerHTML = seconds;
+        if (distance < 0) {
+            document.getElementById("days").innerHTML = "00";
+            document.getElementById("hrs").innerHTML = "00";
+            document.getElementById("mins").innerHTML = "00";
+            document.getElementById("secs").innerHTML = "00";
+        }}, 1000);
+    </script>
 </body>
 </html>
