@@ -11,6 +11,7 @@ const ctfSchema = new Schema(
         lvlImg: {type:String, default: "", required: false},
         //level creator
         lvlCr: reqString,
+        srcCode: {type:String, required: false},
         answer: reqString,
         points: {type:Number, required: true},
         logs:[{title: reqString, answer:reqString, timestamp: reqString, user: reqString}],
