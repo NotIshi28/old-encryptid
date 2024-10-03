@@ -11,13 +11,29 @@
             <option value="cryptic">Cryptic</option>
             <option value="ctf">CTF</option>
         </select>
-        <input type="text" class="text" name="title" placeholder="level title">
-        <input type="text" class="text" name="lvlText" placeholder="level text">
-        <input type="number" class="text" name="lvlNo" placeholder="level number">
-        <input type="text" class="text" name="lvlCr" placeholder="level made by">
-        <input type="text" class="text" name="lvlImg" placeholder="level image link">
-        <input type="text" class="text" name="answer" placeholder="answer">
-        <input type="number" class="text" name="points" placeholder="points">
+        <label for="title">Level Title:</label>
+        <input type="text" class="text" id="title" name="title" placeholder="level title">
+        
+        <label for="lvlText">Level Text:</label>
+        <input type="text" class="text" id="lvlText" name="lvlText" placeholder="level text">
+        
+        <label for="lvlNo">Level Number:</label>
+        <input type="number" class="text" id="lvlNo" name="lvlNo" placeholder="level number">
+        
+        <label for="lvlCr">Level Made By:</label>
+        <input type="text" class="text" id="lvlCr" name="lvlCr" placeholder="level made by">
+        
+        <label for="srcCode">Source Code (for CTF only):</label>
+        <input type="text" class="text" id="srcCode" name="srcCode" placeholder="source code (for ctf only)">
+        
+        <label for="lvlImg">Level Image Link:</label>
+        <input type="text" class="text" id="lvlImg" name="lvlImg" placeholder="level image link">
+        
+        <label for="answer">Answer:</label>
+        <input type="text" class="text" id="answer" name="answer" placeholder="answer">
+        
+        <label for="points">Points:</label>
+        <input type="number" class="text" id="points" name="points" placeholder="points">
         <button type="submit">submit</button>
     </form>
 </body>

@@ -16,10 +16,10 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/new', async (req, res) => {
-    let {type, title, lvlNo, lvlText, lvlImg, lvlCr, answer, points} = req.body;
-
+    
     //for cryptic    
     if(type=='cryptic'){
+        let {type, title, lvlNo, lvlText, lvlImg, lvlCr, answer, points} = req.body;
         //finding if level exists
         const checkLevel = await Crypt.findOne({title: title});
         if(checkLevel) {
@@ -82,6 +82,8 @@ router.post('/new', async (req, res) => {
 
     //for ctf
     else if(type=='ctf'){
+        let {type, title, lvlNo, lvlText, lvlImg, lvlCr, srcCode, answer, points} = req.body;
+
         //lvlNo -> int
         lvlNo = parseInt(lvlNo);
     
@@ -134,6 +136,7 @@ router.post('/new', async (req, res) => {
             lvlText: lvlText,
             lvlImg: lvlImg,
             lvlCr: lvlCr,
+            srcCode: srcCode,
             answer: answer,
             logs: [],
             points: 100

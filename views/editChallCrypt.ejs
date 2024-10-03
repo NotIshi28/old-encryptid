@@ -7,13 +7,28 @@
 </head>
 <body>
     <form action="/admin/edit/cryptic/<%=level.lvlNo%>" method="POST">
-        <input type="text" class="text" name="title" placeholder="level title" value = <%= level.title %> >
-        <input type="text" class="text" name="lvlText" placeholder="level text" value = <%= level.lvlText %> >
-        <input type="number" class="text" name="lvlNo" placeholder="level number" value = <%= level.lvlNo %> >
-        <input type="text" class="text" name="lvlCr" placeholder="level made by" value = <%= level.lvlCr %> >
-        <input type="text" class="text" name="lvlImg" placeholder="level image link" value = <%= level.lvlImg %> >
-        <input type="text" class="text" name="answer" placeholder="answer" value = <%= level.answer %> >
-        <input type="number" class="text" name="points" placeholder="points" value = <%= level.points %> >
+        
+        <label for="title">Level Title:</label>
+        <input type="text" class="text" id="title" name="title" placeholder="level title" value="<%= level.title %>">
+        
+        <label for="lvlText">Level Text:</label>
+        <input type="text" class="text" id="lvlText" name="lvlText" placeholder="level text" value="<%= level.lvlText %>">
+        
+        <label for="lvlNo">Level Number:</label>
+        <input type="number" class="text" id="lvlNo" name="lvlNo" placeholder="level number" value="<%= level.lvlNo %>">
+        
+        <label for="lvlCr">Level Made By:</label>
+        <input type="text" class="text" id="lvlCr" name="lvlCr" placeholder="level made by" value="<%= level.lvlCr %>">
+        
+        <label for="lvlImg">Level Image Link:</label>
+        <input type="text" class="text" id="lvlImg" name="lvlImg" placeholder="level image link" value="<%= level.lvlImg %>">
+        
+        <label for="answer">Answer:</label>
+        <input type="text" class="text" id="answer" name="answer" placeholder="answer" value="<%= level.answer %>">
+        
+        <label for="points">Points:</label>
+        <input type="number" class="text" id="points" name="points" placeholder="points" value="<%= level.points %>">
+        
         <button type="submit">submit</button>
     </form>
 </body>
