@@ -221,8 +221,8 @@ router.get('/user/:id', async (req, res) => {
     const user = await User.findOne({ _id: id });
 
     // Filter logs into cryptic and ctf based on the completed lists
-    const crypticLogs = user.logs.filter(log => user.completed.cryptic.includes(log.level));
-    const ctfLogs = user.logs.filter(log => user.completed.ctf.includes(log.level));
+    const crypticLogs = user.logs.cryptic;
+    const ctfLogs = user.logs.ctf;
 
     res.render('userLogs', { crypticLogs, ctfLogs, user });
 });

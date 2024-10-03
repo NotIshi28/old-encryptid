@@ -14,12 +14,14 @@
             <th>Level</th>
             <th>Answer</th>
             <th>Timestamp</th>
+            <th>Correct</th>
         </tr>
         <% crypticLogs.forEach(log => { %>
             <tr>
                 <td><%= log.level %></td>
                 <td><%= log.answer %></td>
                 <td><%= log.timestamp %></td>
+                <td><%= log.isCorrect %></td>
             </tr>
         <% }) %>
     </table>
@@ -30,13 +32,51 @@
             <th>Level</th>
             <th>Answer</th>
             <th>Timestamp</th>
+            <th>Correct</th>
         </tr>
         <% ctfLogs.forEach(log => { %>
             <tr>
                 <td><%= log.level %></td>
                 <td><%= log.answer %></td>
                 <td><%= log.timestamp %></td>
+                <td><%= log.isCorrect %></td>
             </tr>
+        <% }) %>
+    </table>
+
+    <h2>Correct Cryptic Logs</h2>
+    <table border="1">
+        <tr>
+            <th>Level</th>
+            <th>Answer</th>
+            <th>Timestamp</th>
+        </tr>
+        <% crypticLogs.forEach(log => { %>
+            <% if (log.isCorrect) { %>
+                <tr>
+                    <td><%= log.level %></td>
+                    <td><%= log.answer %></td>
+                    <td><%= log.timestamp %></td>
+                </tr>
+            <% } %>
+        <% }) %>
+    </table>
+
+    <h2>Correct CTF Logs</h2>
+    <table border="1">
+        <tr>
+            <th>Level</th>
+            <th>Answer</th>
+            <th>Timestamp</th>
+        </tr>
+        <% ctfLogs.forEach(log => { %>
+            <% if (log.isCorrect) { %>
+                <tr>
+                    <td><%= log.level %></td>
+                    <td><%= log.answer %></td>
+                    <td><%= log.timestamp %></td>
+                </tr>
+            <% } %>
         <% }) %>
     </table>
 </body>

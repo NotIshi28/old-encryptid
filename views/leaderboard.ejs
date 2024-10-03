@@ -19,12 +19,13 @@
             </thead>
             <tbody>
                 <% for(let i = 0; i < users.length; i++) { %>
-                <tr>
-                    <td><%= i + 1 %></td>
-                    <td><%= users[i].username %></td>
-                    <td><%= users[i].school %></td>
-                    <td><%= users[i].score %></td>
-                </tr>
+                
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><a href="/admin/user/<%= users[i]._id %>"><%= users[i].username %></a></td>
+                        <td><%= users[i].school %></td>
+                        <td><%= users[i].score %></td>
+                    </tr>
                 <% } %>
             </tbody>
         </table>
