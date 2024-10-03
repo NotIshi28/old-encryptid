@@ -216,7 +216,26 @@ router.post('/edit/ctf/:id', async (req, res) => {
     res.redirect('/admin');
 });
 
+router.get('/user/:id', async (req, res) => {
+    const id = req.params.id;
+    const user = await User.findOne({ _id: id });
 
+    // Filter logs into cryptic and ctf based on the completed lists
+    const crypticLogs = user.logs.filter(log => user.completed.cryptic.includes(log.level));
+    const ctfLogs = user.logs.filter(log => user.completed.ctf.includes(log.level));
+
+    res.render('userLogs', { crypticLogs, ctfLogs, user });
+});
+
+router.get('/ban/:id', async (req, res) => {
+    const id = req.params.id;
+    await User.updateOne({_id: id}, {
+        $set: {
+            isBanned: true
+        }
+    });
+    res.redirect('/admin');
+})
 
 //export router
 module.exports = router;

@@ -37,30 +37,32 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
         res.redirect('/challenges/cryptic/');
     }
     else{
-        //logging answers entered by user
-        let log = {
-            level: lvlNo, 
-            answer: req.body.answer, 
-            timestamp: new Date().toLocaleString()
-        };
-        
-        //updating logs in user
-        user.logs.push(log);
-        
-        //logging answers acc to lvl
-        let lvlLog = {
-            title: cryptLvl.title,
-            answer: req.body.answer,
-            user: req.user.username,
-            timestamp: new Date().toLocaleString()
-        }
-
-        // cryptLvl.logs.push(lvlLog);
-
-        console.log('this is logGGG',log)
-
         //checking answer
         if(req.body.answer == cryptLvl.answer){
+            //logging answers entered by user
+            let log = {
+                level: lvlNo, 
+                answer: req.body.answer, 
+                isCorrect: true,
+                id: cryptLvl._id,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            //updating logs in user
+            user.logs.cryptic.push(log);
+            
+            //logging answers acc to lvl
+            let lvlLog = {
+                title: cryptLvl.title,
+                answer: req.body.answer,
+                user: req.user.username,
+                timestamp: new Date().toLocaleString()
+            }
+
+            console.log('this is logGGG',user.logs)
+            
+            let logsToBePushed = user.logs
+
             let completedD = user.completedDetail;
             let completed = user.completed;
             let score = user.score;
@@ -82,10 +84,8 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
                 $set: {
                     completedDetail: completedD,
                     score: score,
-                    completed: completed
-                },
-                $push: {
-                    logs: log
+                    completed: completed,
+                    logs: logsToBePushed
                 }
             }).then(console.log("yooo"))
 
@@ -98,12 +98,35 @@ router.post('/cryptic/:lvlNo', async (req, res) => {
         }
         else{
             //if ans is wrong
+
+            //logging answers entered by user
+            let log = {
+                level: lvlNo, 
+                answer: req.body.answer, 
+                isCorrect: false,
+                id: cryptLvl._id,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            //updating logs in user
+            user.logs.cryptic.push(log);
+            
+            //logging answers acc to lvl
+            let lvlLog = {
+                title: cryptLvl.title,
+                answer: req.body.answer,
+                user: req.user.username,
+                timestamp: new Date().toLocaleString()
+            }
+            
+            let logsToBePushed = user.logs
+
             const completed = req.user.completed;
             res.render('cryptLvl', { user: req.user, cryptLvl: cryptLvl, completed: completed})
 
             await User.updateOne({username: req.user.username}, {
-                $push: {
-                    logs: log
+                $set: {
+                    logs: logsToBePushed
                 }
             })
 
@@ -145,33 +168,39 @@ router.post('/ctf/:lvlNo', async (req, res) => {
     
     //get user
     const user = await User.findOne({username: req.user.username});
+
+    
     
     if(req.body.answer == '' || req.body.answer == null || req.body.answer == undefined){
         res.redirect('/challenges/ctf/');
     }
     else{
-        //logging answers entered by user
-        let log = {
-            level: lvlNo, 
-            answer: req.body.answer, 
-            timestamp: new Date().toLocaleString()
-        };
-        
-        //updating logs in user
-        user.logs.push(log);
-        
-        //logging answers acc to lvl
-        let lvlLog = {
-            title: ctfLvl.title,
-            answer: req.body.answer,
-            user: req.user.username,
-            timestamp: new Date().toLocaleString()
-        }
-
-        console.log('this is logGGG',log)
-
         //checking answer
         if(req.body.answer == ctfLvl.answer){
+            //logging answers entered by user
+            let log = {
+                level: lvlNo, 
+                answer: req.body.answer, 
+                isCorrect: true,
+                id: ctfLvl._id,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            //updating logs in user
+            user.logs.ctf.push(log);
+            
+            //logging answers acc to lvl
+            let lvlLog = {
+                title: ctfLvl.title,
+                answer: req.body.answer,
+                user: req.user.username,
+                timestamp: new Date().toLocaleString()
+            }
+
+            console.log('this is logGGG',user.logs)
+            
+            let logsToBePushed = user.logs
+
             let completedD = user.completedDetail;
             let completed = user.completed;
             let score = user.score;
@@ -179,7 +208,7 @@ router.post('/ctf/:lvlNo', async (req, res) => {
             //updateing user score
             score = score+ctfLvl.points;
         
-            //update completed ctf details includees lvl num, title and type
+            //update completed ctf     details includees lvl num, title and type
             completedD.push({lvlNo:lvlNo, title: ctfLvl.title, type:'ctf'});
         
             //update completed ctf chall _id
@@ -193,10 +222,8 @@ router.post('/ctf/:lvlNo', async (req, res) => {
                 $set: {
                     completedDetail: completedD,
                     score: score,
-                    completed: completed
-                },
-                $push: {
-                    logs: log
+                    completed: completed,
+                    logs: logsToBePushed
                 }
             }).then(console.log("yooo"))
 
@@ -209,12 +236,35 @@ router.post('/ctf/:lvlNo', async (req, res) => {
         }
         else{
             //if ans is wrong
+
+            //logging answers entered by user
+            let log = {
+                level: lvlNo, 
+                answer: req.body.answer, 
+                isCorrect: false,
+                id: ctfLvl._id,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            //updating logs in user
+            user.logs.ctf.push(log);
+            
+            //logging answers acc to lvl
+            let lvlLog = {
+                title: ctfLvl.title,
+                answer: req.body.answer,
+                user: req.user.username,
+                timestamp: new Date().toLocaleString()
+            }
+            
+            let logsToBePushed = user.logs
+
             const completed = req.user.completed;
             res.render('ctfLvl', { user: req.user, ctfLvl: ctfLvl, completed: completed})
 
             await User.updateOne({username: req.user.username}, {
-                $push: {
-                    logs: log
+                $set: {
+                    logs: logsToBePushed
                 }
             })
 

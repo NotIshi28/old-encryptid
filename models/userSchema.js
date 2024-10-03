@@ -14,7 +14,13 @@ const userSchema = new Schema(
         completed: {cryptic:[], ctf:[]},
         completedDetail: [],
         pending: [],
-        logs:[{level: reqString, answer: reqString, timestamp: {type:String, default: new Date().toLocaleString()}}],
+        logs:{
+            cryptic:[
+                {level: reqString, answer: reqString, isCorrect: {type:Boolean}, id: reqString, timestamp: {type:String, default: new Date().toLocaleString()}}
+            ],
+            ctf:[
+                {level: reqString, answer: reqString, timestamp: {type:String, default: new Date().toLocaleString()}}
+            ]},
     },
     { timestamps: true }
 );

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user logs</title>
+</head>
+<body>
+    <h1>User Logs</h1>
+    <a href="/admin/ban/<%= user._id %>" style="text-decoration: none; color: #000;">ban <%= user.username %></a>
+    <h2>Cryptic Logs</h2>
+    <table border="1">
+        <tr>
+            <th>Level</th>
+            <th>Answer</th>
+            <th>Timestamp</th>
+        </tr>
+        <% crypticLogs.forEach(log => { %>
+            <tr>
+                <td><%= log.level %></td>
+                <td><%= log.answer %></td>
+                <td><%= log.timestamp %></td>
+            </tr>
+        <% }) %>
+    </table>
+
+    <h2>CTF Logs</h2>
+    <table border="1">
+        <tr>
+            <th>Level</th>
+            <th>Answer</th>
+            <th>Timestamp</th>
+        </tr>
+        <% ctfLogs.forEach(log => { %>
+            <tr>
+                <td><%= log.level %></td>
+                <td><%= log.answer %></td>
+                <td><%= log.timestamp %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
