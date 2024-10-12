@@ -10,8 +10,10 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/')
+    req.logout((err) => {
+        if (err) console.log(err)
+        return res.redirect('/')
+    });
 })
 
 //export router

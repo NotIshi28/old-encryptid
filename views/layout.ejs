@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crt</title>
+    <link rel="stylesheet" href="/styles/scanlines.css">
+    <link rel="stylesheet" href="/styles/crt.css">
+    <script src="/scripts/main.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Tahoma', sans-serif;
+            background-color: #222;
+        }
+        .desktop {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .crt-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        #screen {
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/46/997/184/windows-xp-pug-dog-wallpaper-preview.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        #content {
+            /* margin-top: 3vw; */
+            /* margin-left: 4vw; */
+            width: 100%;
+            height: 100%;
+            padding: 1.4% 0% 2% 0%;
+            margin-left: 4%;
+            position: relative;
+            transform-origin: center center;
+            transition: all 0.1s ease;
+        }
+        .icon {
+            width: 64*2px;
+            height: 80*2px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+        }
+        .icon-image {
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon-text {
+            margin-top: 5px;
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px #000;
+        }
+        
+        #menu {
+            position: absolute;
+            width: 97%;
+            background-color: #00AA33;
+            bottom:7.5%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 4vw;
+            right:4vw;
+        }
+
+        .menuIt {
+            display: flex;
+            flex-direction: row;
+            gap: 1vw;
+        }
+        .menuIt a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 0 0 1vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1vw;
+            gap: 0.5vw;
+            height: 2vw;
+            width: auto;
+        }
+
+        .clock{
+            margin-right: 5vw;
+            color: #fff;
+            font-size: 1vw;
+            margin-bottom: 0.6vw;
+        }
+
+        .windows{
+            display: none;
+            top: 30%;
+            left: 25%;
+            position: fixed;
+            color: #AAFFDD;
+            border-collapse: separate;
+            border: 2px solid #AFFFDF;
+            background-color: #00AA33; 
+            box-shadow: 25px 35px rgba(0, 25, 0, 0.5);
+            width: 50%;
+        }
+
+        .tdWindow a{
+            display: block;
+            color: #fff;
+            font-size: 1vw;
+            width: 15vw;   
+        }
+    </style>
+</head>
+<body onload="loadColor()">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="desktop" style="filter: url(#SphereMapTest) url(#colorfill);">
+        <div class="ignore" style="display: none; position: absolute; top:-9999; z-index:0; visibility: hidden;">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg-root" width="381" height="166" z-index="-1">
+                <title id="test-title">filters-dispMap-BE-16</title>
+                <desc id="test-desc">Test which verifies the basic facilities of feDisplacementMap.</desc>
+                <defs>
+                    <filter id="SphereMapTest" filterUnits="objectBoundingBox" x="-0.45" y="-1.29" width="1.6" height="3.5">
+                        <feImage id="mapa" result="Map" xlink:href="/images/sphere_wide_1.png" />
+                        <feDisplacementMap id="despMap" in="SourceGraphic" in2="map" scale="100" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+                    <filter id="colorfill" z-index="1">
+                        <feColorMatrix id="colorMain" type="matrix" in="SourceGraphic" result="B"
+                        values="
+                            1	0	0	0	0
+                            0	1	0	0	0
+                            0	0	1	0	0
+                            0	0	0	1	0
+                            ">
+                        <animate id="colA" attributeName="values" begin="0s" dur="3.5s" restart_="always" repeatCount="1" values="
+                            1	0	0	0	0
+                            0	1	0	0	0
+                            0	0	1	0	0
+                            0	0	0	1	0;
+                            1	0	0	0	0
+                            0	1	0	0	0
+                            0	0	1	0	0
+                            0	0	0	1	0
+            
+                        " fill="freeze"/>
+                        </feColorMatrix>
+                        <feMerge>
+                            <feMergeNode in="A"/>
+                            <feMergeNode in="B"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="secondFill" z-index="0">
+                        <feColorMatrix id="colorSec" type="matrix" in="SourceGraphic"
+                        values="
+                            0	0	0	0	0
+                            0	1	0	0	0
+                            0	0	0	0	0
+                            0	0	0	1	0 
+                            "/>
+                    </filter>
+                    <filter id="brightness">
+                        <feComponentTransfer>
+                            <feFuncR id="brR" type="linear" slope="1"/>
+                            <feFuncG id="brG" type="linear" slope="1"/>
+                            <feFuncB id="brB" type="linear" slope="1"/>
+                        </feComponentTransfer>
+                    </filter>
+                    <filter id="contrast">
+                        <feComponentTransfer>
+                            <feFuncR id="conR" type="linear" slope="1" intercept="0"/>
+                            <feFuncG id="conG" type="linear" slope="1" intercept="0"/>
+                            <feFuncB id="conB" type="linear" slope="1" intercept="0"/>
+                        </feComponentTransfer>
+                    </filter>
+                    
+                </defs>
+            </svg>
+        </div>
+
+        <div id="screensaver" style="position: absolute; bottom: 5vw; right: 5.5vw; width: 97%; height: 95%; display: none; z-index: 1000; visibility: visible;">
+            <a href="#" onclick="powerOn();return false;">
+                <img id="logo" src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Bouncing Logo" style="position: absolute; width: 100px; height: 100px;">
+            </a>
+        </div>
+        <%- body %>
+        <div id="scanline" class="scanline"></div>
+        <img class="crt-frame" id="crt-frame" style="z-index: 100000;" src="https://github.com/scar45/retro-crt-startpage/blob/master/src/images/crt_green_mask.png?raw=true" alt="CRT Frame">
+        <div class="scanline">
+              <img class="cristal" id="image" src="/images/texture.png" style="position: fixed; left:0; top:0">
+        </div>
+    </div>
+    
+</body>
+</html>
