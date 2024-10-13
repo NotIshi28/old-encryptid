@@ -103,6 +103,14 @@ var div_content = document.getElementById("content");
 function showWin(wich,vis)
 {
     document.getElementById(wich).style.display = vis;
+    if(vis == "block")
+    {
+        document.getElementById(wich).style.zIndex = "1000000";
+    }
+    else
+    {
+        document.getElementById(wich).style.zIndex = "0";
+    }
     
 }
 

@@ -11,14 +11,17 @@
                             </a>
                         </div>
                         <div class="settingsTb">
-                            <a href="index.html">Index</a>
+                            <a href="/">Index</a>
                         </div>
-                        <div class="help">
-                            <a href="javascript:void(0)" class="dropbtn">Help</a>
+                        <div class="dashboard">
+                            <a href="/dashboard" class="dropbtn">Dashboard</a>
                         </div>
-                        <div class="controls">
-                            <a href="#" onclick="showWin('colorControls','block');return false;">Color controls</a>
+                        <div class="settings">
+                            <a href="#" onclick="showWin('settingWin','block');return false;">Settings</a>
                         </div>	
+                        <div class="logout">
+                            <a href="/login/logout">Logout</a>
+                        </div>
                     <% } else{ %>
                         <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
                             <div class="start" style="margin-left: 1vw;">
@@ -48,26 +51,10 @@
                             Syndicate '95
                         </div>
                         <% if (user) { %>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="My Computer" style="margin-right: 0.5vw; width: 2vw;">
-                                My Computer
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Recycle Bin" style="margin-right: 0.5vw; width: 2vw;">
-                                Recycle Bin
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Control Panel" style="margin-right: 0.5vw; width: 2vw;">
-                                Control Panel
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Run" style="margin-right: 0.5vw; width: 2vw;">
-                                Run
-                            </div>
-                            <a href="#" onclick="powerOff()" style="text-decoration: none; color:#009900">
+                            <a href="/leaderboard" style="text-decoration: none; color:#009900">
                                 <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
                                     <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
-                                    Shutdown
+                                    View leaderboard
                                 </div>
                             </a>
                             <% } else{ %>                        
@@ -84,6 +71,12 @@
                                     </div>
                                 </a>
                         <% } %>
+                        <a href="#" onclick="powerOff()" style="text-decoration: none; color:#009900">
+                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
+                                Shutdown
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div id="colorControls" class="windows">
