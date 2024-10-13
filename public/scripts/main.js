@@ -58,8 +58,7 @@ function getRndInteger(min, max){
 }
 var colorAnt = "originalC";
 
-function setColor(wich, rootEl, color)
-{
+function setColor(wich, rootEl, color) {
     var arrColors = {}
     arrColors['yellowC'] = "0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0";
     arrColors['greenC'] = "0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0";
@@ -79,14 +78,21 @@ function setColor(wich, rootEl, color)
     
     document.getElementById(wich).setAttribute("values",colrT);
 
+    localStorage.setItem('chosenColor', color);
+    // Log the color from local storage
+    console.log('Color from local storage:', localStorage.getItem('chosenColor'));
 }
+
 //function getRndInteger(min, max)
 function loadColor()
 {
-    var arrCnames = ['blueC', 'yellowC', 'greenC', 'redC', 'grayC', 'originalC'];
-    //TODO: CHANGE THIS IN PROD
-    // setColor('colA','svg-root',arrCnames[getRndInteger(0, 5)]);
-    setColor('colA','svg-root','originalC');
+    
+    if(localStorage.getItem('chosenColor') == null){
+        setColor('colA','svg-root','originalC');
+    }
+    else{
+        setColor('colA', 'svg-root', localStorage.getItem('chosenColor'));
+    }
     
 }
 

@@ -99,13 +99,16 @@
                             </a>
                         </div>
                         <div class="settingsTb">
-                            <a href="index.html">Index</a>
+                            <a href="/">Home</a>
                         </div>
-                        <div class="help">
-                            <a href="javascript:void(0)" class="dropbtn">Help</a>
+                        <div class="dashboard">
+                            <a href="#" onclick="showWin('pcWindow','block');return false;" class="dropbtn">Dashboard</a>
                         </div>
-                        <div class="controls">
-                            <a href="#" onclick="showWin('colorControls','block');return false;">Color controls</a>
+                        <div class="settings">
+                            <a href="#" onclick="showWin('colorControls','block');return false;">Coloe</a>
+                        </div>
+                        <div class="logout">
+                            <a href="/login/logout">Logout</a>
                         </div>	
                     <% } else{ %>
                         <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
@@ -203,7 +206,7 @@
                     </table>
                 </div>	
                 
-                <div id="retroWindow" class="windows" style="display: block; top: 10%; left: 10%; width: 40%; height: 40%; position: absolute;">
+                <div id="pcWindow" class="windows" style="display: block; top: 10%; left: 10%; width: 40%; height: 40%; position: absolute;">
                     <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.2vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; ">
                         <div class="head" style="cursor: move; width: 95%; padding-top: 0.5vw; padding-bottom: 0.5vw;">
                             <span>This PC</span>
@@ -214,7 +217,7 @@
                     </div>
                     <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw);">
                         <div style="font-size: 1vw; color: #fff; padding: 0.5vw; background-color: #505050;">
-                            C:\Encryptid\Users\NotIshi
+                            C:\Encryptid\Users\NotIshi\Dashboard
                         </div>       
                         
                         <h1>Welcome to the dashboard</h1>
@@ -232,13 +235,13 @@
                         <a href="/leaderboard">leaderboard</a>
 
                         <a href="/challenges/cryptic">
-                            <div class="icon" style="top: 22vw; left: 2vw;">
+                            <div class="icon" style="top: 21.5vw; left: 2vw;">
                                 <div class="icon-image" style="background-image: url('https://64.media.tumblr.com/94eb4c24198978507319e8689cad89ac/45c8a5b7153403c2-bc/s540x810/989089678e3a98bbb691bafd7a22c12c44cf90b9.png'); background-size: 6vw;"></div>
                                 <div class="icon-text" style="font-size: 0.8vw;">Cryptic</div>
                             </div>
                         </a>
                         <a href="/challenges/ctf">
-                            <div class="icon" style="top: 22vw; left: 6vw;">
+                            <div class="icon" style="top: 21.5vw; left: 6vw;">
                                 <div class="icon-image" style="background-image: url('https://64.media.tumblr.com/94eb4c24198978507319e8689cad89ac/45c8a5b7153403c2-bc/s540x810/989089678e3a98bbb691bafd7a22c12c44cf90b9.png'); background-size: 6vw;"></div>
                                 <div class="icon-text" style="font-size: 0.8vw;">CTF</div>
                             </div>
@@ -269,11 +272,11 @@
             document.getElementById("secs").innerHTML = "00";
         }}, 1000);
         function closeWindow() {
-            document.getElementById('retroWindow').style.display = 'none';
+            document.getElementById('pcWindow').style.display = 'none';
         }
 
         function makeWindowDraggable() {
-            const windowElement = document.getElementById('retroWindow');
+            const windowElement = document.getElementById('pcWindow');
             const header = windowElement.querySelector('.window-header');
             let offsetX = 0, offsetY = 0, isDragging = false;
 
@@ -301,7 +304,7 @@
             margin-left: -.5em;
         }
         .countdown li p {
-            margin-left: 1.5em !important;
+            margin-left: 2vw !important;
         }
         .countdown li span{
             margin-left: 2em !important;
@@ -327,10 +330,6 @@
             text-align: center;
             width: 25em;
             margin-left: -3.5em;
-        }
-        
-        .countdown li p{
-            margin-left: 1.5em;
         }
     </style>
 </body>
