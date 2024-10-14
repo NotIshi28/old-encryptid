@@ -37,9 +37,17 @@ async function loginUser(req, res, next) {
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        res.redirect('/dashboard');
+        if(user.firstTime){
+          res.redirect('/register');
+        }
+        else if(user.admin){
+          res.redirect('/admin');
+        }
+        else{
+          res.redirect('/dashboard');
+        }
         // res.redirect('/admin');
-      });
+      })
     }
   })(req, res, next);
 }

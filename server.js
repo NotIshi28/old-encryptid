@@ -10,6 +10,7 @@ const express = require('express'),
     nodemailer = require('nodemailer')
 
 const indexRouter = require('./routers/indexRouter.js'),
+    regRouter = require('./routers/regRouter.js'),
     loginRouter = require('./routers/loginRouter.js'),
     dashboardRouter = require('./routers/dashboardRouter.js'),
     adminRouter = require('./routers/adminRouter.js'),

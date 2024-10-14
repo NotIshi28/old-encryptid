@@ -184,3 +184,13 @@ function start(){
         showWin('start-menu','block');
     }
 }
+
+function loadWallpaper() {
+    const screen = document.getElementById('screen');
+    const savedWallpaper = localStorage.getItem('wallpaper');
+    if (savedWallpaper) {
+        screen.style.backgroundImage = `url(${savedWallpaper})`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadWallpaper);

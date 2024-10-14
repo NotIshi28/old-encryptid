@@ -105,7 +105,7 @@
                             <a href="#" onclick="showWin('pcWindow','block');return false;" class="dropbtn">Dashboard</a>
                         </div>
                         <div class="settings">
-                            <a href="#" onclick="showWin('colorControls','block');return false;">Coloe</a>
+                            <a href="#" onclick="showWin('settingsPanel','block');return false;">Settings</a>
                         </div>
                         <div class="logout">
                             <a href="/login/logout">Logout</a>
@@ -177,33 +177,59 @@
                         <% } %>
                     </div>
                 </div>
-                <div id="colorControls" class="windows">
-                    <table cellspacing="0" cellpadding="4" border="1" width="100%" class="tableList">
-                        <tr>
-                            <td colspan="3" class="tdtitles tdWindow" style="color: #fff;">
-                                    <center>
-                                    Color Controls
-                                    </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','originalC')"> origi </a> </td>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','blueC')"> blue </a> </td>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','greenC')"> green </a> </td>
-                        </tr>
-                        <tr>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','redC')"> red </a> </td>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','yellowC')"> yellow </a> </td>
-                            <td align="center" class="manos tdWindow"><a border="0" onclick ="setColor('colA','svg-root','grayC')"> gray </a> </td>
-                        </tr>
-                        <tr>
-                            <td align="center"  colspan=3 class="tdWindow">
-                                <span class="textbutton" onclick="showWin('colorControls','none');return false;" style="color: #fff;">
-                                    <br>[ OK ]<br><br><br>
-                                </span>
-                            </td>
-                        </tr>		
-                    </table>
+                <div id="colorControls" class="windows" style="display: none; top: 200px; left: 200px; width: 50vw; height: 20vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); overflow-y: hidden;">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Color Controls</span>
+                        <button onclick="showWin('colorControls','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <table cellspacing="0" cellpadding="4" border="1" width="100%" class="tableList" style="color: #fff;">
+                            <tr>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','originalC')" style="color: #fff;">Original</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','blueC')" style="color: #fff;">Blue</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','greenC')" style="color: #fff;">Green</a></td>
+                            </tr>
+                            <tr>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','redC')" style="color: #fff;">Red</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','yellowC')" style="color: #fff;">Yellow</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','grayC')" style="color: #fff;">Gray</a></td>
+                            </tr>
+                        </table>
+                        <center>
+                            <span class="textbutton" onclick="showWin('colorControls','none');return false;" style="color: #fff;">
+                                <br>[ OK ]<br><br><br>
+                            </span>
+                        </center>
+                    </div>
+                </div>
+
+                <div id="settingsPanel" class="settingsPanel windows" style="display: none; top: 200px; left: 200px; width: 20vw; height: 20vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Settings</span>
+                        <button onclick="showWin('settingsPanel','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <a onclick="showWin('colorControls','block');showWin('settingsPanel','none');return false;" style="display: block; color: #fff; padding: 0.7vw; cursor: pointer;">Color Control</a>
+                        <a onclick="showWin('wallpaper','block');showWin('settingsPanel','none');return false;" style="display: block; color: #fff; padding: 0.7vw; cursor: pointer;">Change Wallpaper</a>
+                    </div>
+                </div>
+
+                <div id="wallpaper" class="windows" style="display: none; top: 200px; left: 200px; width: 30vw; height: 30vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Change Wallpaper</span>
+                        <button onclick="showWin('wallpaper','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <form id="wallpaperForm" onsubmit="changeWallpaper(event)">
+                            <label for="wallpaperFile" style="color: #fff;">Upload File:</label>
+                            <input type="file" id="wallpaperFile" name="wallpaperFile" accept="image/*" style="margin-bottom: 1vw;">
+                            <br>
+                            <label for="wallpaperUrl" style="color: #fff;">Or Enter Image URL:</label>
+                            <input type="text" id="wallpaperUrl" name="wallpaperUrl" placeholder="http://example.com/image.jpg" style="width: 100%; margin-bottom: 1vw;">
+                            <br>
+                            <button type="submit" style="background-color: #000080; color: #fff; padding: 0.5vw; border: none; cursor: pointer;">Set Wallpaper</button>
+                        </form>
+                    </div>
                 </div>	
                 
                 <div id="pcWindow" class="windows" style="display: block; top: 10%; left: 10%; width: 40%; height: 40%; position: absolute;">
@@ -275,8 +301,8 @@
             document.getElementById('pcWindow').style.display = 'none';
         }
 
-        function makeWindowDraggable() {
-            const windowElement = document.getElementById('pcWindow');
+        function makeWindowDraggable(windowId) {
+            const windowElement = document.getElementById(windowId);
             const header = windowElement.querySelector('.window-header');
             let offsetX = 0, offsetY = 0, isDragging = false;
 
@@ -297,7 +323,34 @@
                 isDragging = false;
             });
         }
-        makeWindowDraggable();
+
+        function changeWallpaper(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('wallpaperFile');
+            const urlInput = document.getElementById('wallpaperUrl');
+            const screen = document.getElementById('screen');
+            let wallpaperUrl = '';
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    wallpaperUrl = e.target.result;
+                    screen.style.backgroundImage = `url(${wallpaperUrl})`;
+                    localStorage.setItem('wallpaper', wallpaperUrl);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (urlInput.value) {
+                wallpaperUrl = urlInput.value;
+                screen.style.backgroundImage = `url(${wallpaperUrl})`;
+                localStorage.setItem('wallpaper', wallpaperUrl);
+            }
+
+            showWin('wallpaper', 'none');
+        }
+        makeWindowDraggable('pcWindow');
+        makeWindowDraggable('settingsPanel');
+        makeWindowDraggable('wallpaper');
+        makeWindowDraggable('colorControls')
     </script>
     <style>
         .countdown{
