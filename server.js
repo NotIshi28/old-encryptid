@@ -51,6 +51,7 @@ function isAdmin(req, res, next) {
 }
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
+app.use('/register', regRouter)
 app.use('/dashboard', ensureAuthenticated, dashboardRouter)
 app.use('/admin', ensureAuthenticated, ensureAdminAuthenticated, adminRouter)
 app.use('/challenges', ensureAuthenticated, challRouter)

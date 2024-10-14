@@ -29,7 +29,6 @@ function ensureAdminAuthenticated(req, res, next) {
 
 
 async function loginUser(req, res, next) {
-  console.log(req.body.email, req.body.password)
   await passport.authenticate('local', (err, user, info) => {
     console.log(err, user, info)
     if (err) throw err;
@@ -37,10 +36,11 @@ async function loginUser(req, res, next) {
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
+        console.log('THIS IS USER!!!!!!!!!'+user)
         if(user.firstTime){
           res.redirect('/register');
         }
-        else if(user.admin){
+        else if(user.isAdmin){
           res.redirect('/admin');
         }
         else{
