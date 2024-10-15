@@ -18,7 +18,12 @@
             </div>
             <div class="logout">
                 <a href="/login/logout">Logout</a>
+            </div>
+            <% if (user.isAdmin) { %>
+                <div class="admin">
+                    <a href="/admin">Admin</a>
             </div>	
+            <% } %>	
         <% } else{ %>
             <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
                 <div class="start" style="margin-left: 1vw;">
@@ -34,11 +39,7 @@
                 </div>
             </div>
         <% } %>
-        <% if (user.isAdmin) { %>
-            <div class="admin">
-                <a href="/admin">Admin</a>
-        </div>	
-        <% } %>
+        
 
     </div>
     <div class="menuIt clock">

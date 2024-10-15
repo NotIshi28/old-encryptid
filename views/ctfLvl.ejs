@@ -4,51 +4,7 @@
         <div id="content">
             <%- include('partials/nav.ejs') %>
             <div class="windowsGrp">
-                <div class="start">
-                    <div class="start-menu" id="start-menu" style="display:none; position: absolute; bottom: 15%; left: -0.5vw; width: 20vw; background-color: #C0C0C0; border: 2px solid #000; z-index: 1000; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
-                        <div class="start-menu-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; align-items: center;">
-                            <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Windows Logo" style="margin-right: 0.5vw; width: 2vw;">
-                            Syndicate '95
-                        </div>
-                        <% if (user) { %>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="My Computer" style="margin-right: 0.5vw; width: 2vw;">
-                                My Computer
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Recycle Bin" style="margin-right: 0.5vw; width: 2vw;">
-                                Recycle Bin
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Control Panel" style="margin-right: 0.5vw; width: 2vw;">
-                                Control Panel
-                            </div>
-                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Run" style="margin-right: 0.5vw; width: 2vw;">
-                                Run
-                            </div>
-                            <a href="#" onclick="powerOff()" style="text-decoration: none; color:#009900">
-                                <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                    <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
-                                    Shutdown
-                                </div>
-                            </a>
-                            <% } else{ %>                        
-                                <a href="/login" style="text-decoration: none; color:#009900">
-                                    <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                        <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
-                                        Get Started
-                                    </div>
-                                </a>
-                                <a href="/leaderboard" style="text-decoration: none; color:#009900">
-                                    <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
-                                        <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
-                                        View leaderboard
-                                    </div>
-                                </a>
-                        <% } %>
-                    </div>
-                </div>
+                <%- include('partials/start.ejs') %>
                 <div id="colorControls" class="windows" style="display: none; top: 200px; left: 200px; width: 50vw; height: 20vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); overflow-y: hidden;">
                     <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
                         <span>Color Controls</span>
