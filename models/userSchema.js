@@ -7,7 +7,7 @@ const userSchema = new Schema(
         username: reqString,
         password: reqString,
         email: reqString,
-        firtTime: { type: Boolean, default: true },
+        firstTime: { type: Boolean, default: true },
         school: reqString,
         score: { type: Number, default: 0 },
         isBanned: { type: Boolean, default: false },

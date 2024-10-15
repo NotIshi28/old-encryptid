@@ -14,6 +14,7 @@ router.post('/', async (req,res) => {
             username: username
         }
     })
+    res.redirect('/dashboard')
 })
 
 //export router

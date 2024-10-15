@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,18 +6,280 @@
     <title>Document</title>
 </head>
 <body>
-    <% let completedArray = JSON.parse(JSON.stringify(completed.cryptic)); %>
-
-    <% for( let i = 0; i < lvls.length; i++ ) { %>
-        <a href="/challenges/cryptic/<%= lvls[i].lvlNo %>" 
-            <% if (completedArray.includes(lvls[i]._id.toString())) { %>
-                style="color: green"
-            <% } %>>
-            level <%= lvls[i].lvlNo %>
-        </a>
-    <% } %>
     
     
     
 </body>
-</html>
+</html> -->
+
+
+<body>
+    <div id="screen">
+        <div id="content">
+            <div id="menu">
+                <div class="menuIt">
+                    <% if (user) { %>
+                        <div class="start" style="margin-left: 1vw;">
+                            <a href="#" onclick="start();">  
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
+                                Start
+                            </a>
+                        </div>
+                        <div class="settingsTb">
+                            <a href="/">Home</a>
+                        </div>
+                        <div class="dashboard">
+                            <a href="#" onclick="showWin('pcWindow','block');return false;" class="dropbtn">Dashboard</a>
+                        </div>
+                        <div class="settings">
+                            <a href="#" onclick="showWin('settingsPanel','block');return false;">Settings</a>
+                        </div>
+                        <div class="logout">
+                            <a href="/login/logout">Logout</a>
+                        </div>	
+                    <% } else{ %>
+                        <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
+                            <div class="start" style="margin-left: 1vw;">
+                                <a href="#" onclick="start();">  
+                                    <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
+                                    Start
+                                </a>
+                            </div>
+                            <div class="login">
+                                <a href="/login">  
+                                    Get Started
+                                </a>
+                            </div>
+                        </div>
+                    <% } %>
+                    
+                </div>
+                <div class="menuIt clock">
+                    <span id="clock">2024/10/07 11:27:17</span>
+                </div>
+            </div>
+            <div class="windowsGrp">
+                <div class="start">
+                    <div class="start-menu" id="start-menu" style="display:none; position: absolute; bottom: 15%; left: -0.5vw; width: 20vw; background-color: #C0C0C0; border: 2px solid #000; z-index: 1000; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
+                        <div class="start-menu-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; align-items: center;">
+                            <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Windows Logo" style="margin-right: 0.5vw; width: 2vw;">
+                            Syndicate '95
+                        </div>
+                        <% if (user) { %>
+                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="My Computer" style="margin-right: 0.5vw; width: 2vw;">
+                                My Computer
+                            </div>
+                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Recycle Bin" style="margin-right: 0.5vw; width: 2vw;">
+                                Recycle Bin
+                            </div>
+                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Control Panel" style="margin-right: 0.5vw; width: 2vw;">
+                                Control Panel
+                            </div>
+                            <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Run" style="margin-right: 0.5vw; width: 2vw;">
+                                Run
+                            </div>
+                            <a href="#" onclick="powerOff()" style="text-decoration: none; color:#009900">
+                                <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                    <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
+                                    Shutdown
+                                </div>
+                            </a>
+                            <% } else{ %>                        
+                                <a href="/login" style="text-decoration: none; color:#009900">
+                                    <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                        <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
+                                        Get Started
+                                    </div>
+                                </a>
+                                <a href="/leaderboard" style="text-decoration: none; color:#009900">
+                                    <div class="start-menu-item" style="padding: 0.5vw; font-size: 1vw; cursor: pointer; display: flex; align-items: center;">
+                                        <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="Shutdown" style="margin-right: 0.5vw; width: 2vw;">
+                                        View leaderboard
+                                    </div>
+                                </a>
+                        <% } %>
+                    </div>
+                </div>
+                <div id="colorControls" class="windows" style="display: none; top: 200px; left: 200px; width: 50vw; height: 20vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); overflow-y: hidden;">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Color Controls</span>
+                        <button onclick="showWin('colorControls','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <table cellspacing="0" cellpadding="4" border="1" width="100%" class="tableList" style="color: #fff;">
+                            <tr>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','originalC')" style="color: #fff;">Original</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','blueC')" style="color: #fff;">Blue</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','greenC')" style="color: #fff;">Green</a></td>
+                            </tr>
+                            <tr>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','redC')" style="color: #fff;">Red</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','yellowC')" style="color: #fff;">Yellow</a></td>
+                                <td align="center" class="manos tdWindow"><a border="0" onclick="setColor('colA','svg-root','grayC')" style="color: #fff;">Gray</a></td>
+                            </tr>
+                        </table>
+                        <center>
+                            <span class="textbutton" onclick="showWin('colorControls','none');return false;" style="color: #fff;">
+                                <br>[ OK ]<br><br><br>
+                            </span>
+                        </center>
+                    </div>
+                </div>
+
+                <div id="settingsPanel" class="settingsPanel windows" style="display: none; top: 200px; left: 200px; width: 20vw; height: 20vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Settings</span>
+                        <button onclick="showWin('settingsPanel','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <a onclick="showWin('colorControls','block');showWin('settingsPanel','none');return false;" style="display: block; color: #fff; padding: 0.7vw; cursor: pointer;">Color Control</a>
+                        <a onclick="showWin('wallpaper','block');showWin('settingsPanel','none');return false;" style="display: block; color: #fff; padding: 0.7vw; cursor: pointer;">Change Wallpaper</a>
+                    </div>
+                </div>
+
+                <div id="wallpaper" class="windows" style="display: none; top: 200px; left: 200px; width: 30vw; height: 30vh; position: absolute; z-index: 1000; border: 2px solid #000; background-color: #C0C0C0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.5vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; cursor: move;">
+                        <span>Change Wallpaper</span>
+                        <button onclick="showWin('wallpaper','none');return false;" style="background-color: #ff0000; padding: 0.7vw; color: #fff; border: none; cursor: pointer;">X</button>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw); overflow-y: auto; font-size: 1vw;">
+                        <form id="wallpaperForm" onsubmit="changeWallpaper(event)">
+                            <label for="wallpaperFile" style="color: #fff;">Upload File:</label>
+                            <input type="file" id="wallpaperFile" name="wallpaperFile" accept="image/*" style="margin-bottom: 1vw;">
+                            <br>
+                            <label for="wallpaperUrl" style="color: #fff;">Or Enter Image URL:</label>
+                            <input type="text" id="wallpaperUrl" name="wallpaperUrl" placeholder="http://example.com/image.jpg" style="width: 100%; margin-bottom: 1vw;">
+                            <br>
+                            <button type="submit" style="background-color: #000080; color: #fff; padding: 0.5vw; border: none; cursor: pointer;">Set Wallpaper</button>
+                        </form>
+                    </div>
+                </div>	
+                
+                <div id="pcWindow" class="windows" style="display: block; top: 10%; left: 10%; width: 40%; height: 40%; position: absolute;">
+                    <div class="window-header" style="background-color: #000080; color: #fff; padding: 0.2vw; font-size: 1vw; display: flex; justify-content: space-between; align-items: center; ">
+                        <div class="head" style="cursor: move; width: 95%; padding-top: 0.5vw; padding-bottom: 0.5vw;">
+                            <span>This PC</span>
+                        </div>
+                        <div class="x">
+                            <button onclick="closeWindow()" style="background-color: #ff0000; padding:1vw; color: #fff; border: none; cursor: pointer; z-index: 15000;">X</button>
+                        </div>
+                    </div>
+                    <div class="window-content" style="padding: 1vw; background-color: #707070; height: calc(100% - 2vw);">
+                        <div style="font-size: 1vw; color: #fff; padding: 0.5vw; background-color: #505050;">
+                            C:\Encryptid\Users\<%= user.username %>\Challenges\Cryptic
+                        </div>       
+
+                        <a href="/dashboard" style="text-decoration: none; color: #16e16e;">Go back to dashboard</a>
+                        <br><br>
+
+                        <% let completedArray = JSON.parse(JSON.stringify(completed.cryptic)); %>
+
+                        <div class="challDiv">
+                            <% for( let i = 0; i < lvls.length; i++ ) { %>
+                                <div class="file-icon" style="display: inline-block; margin: 1vw; text-align: center;">
+                                    <a href="/challenges/cryptic/<%= lvls[i].lvlNo %> "  style="color: #fff; text-decoration: none;"
+                                        <% if (completedArray.includes(lvls[i]._id.toString())) { %>
+                                            style='color:#000'
+                                        <% } %>>
+                                        <img src="https://64.media.tumblr.com/0a8c1050bcb86fb9080622b1b6e47a05/404a45651ed80451-54/s540x810/d83a7a23ae7019b498ca4a01cf1c21870ee21ca0.png" alt="File Icon" style="width: 5vw; display: block; margin: 0 auto;">
+                                        level <%= lvls[i].lvlNo %>
+                                    </a>
+                                </div>
+                            <% } %>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var countDownDate = new Date("Nov 11, 2024 09:00:00").getTime();
+        var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hrs").innerHTML = hours;
+        document.getElementById("mins").innerHTML = minutes;
+        document.getElementById("secs").innerHTML = seconds;
+        if (distance < 0) {
+            document.getElementById("days").innerHTML = "00";
+            document.getElementById("hrs").innerHTML = "00";
+            document.getElementById("mins").innerHTML = "00";
+            document.getElementById("secs").innerHTML = "00";
+        }}, 1000);
+        function closeWindow() {
+            document.getElementById('pcWindow').style.display = 'none';
+        }
+
+        function makeWindowDraggable(windowId) {
+            const windowElement = document.getElementById(windowId);
+            const header = windowElement.querySelector('.window-header');
+            let offsetX = 0, offsetY = 0, isDragging = false;
+
+            header.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - windowElement.offsetLeft;
+                offsetY = e.clientY - windowElement.offsetTop;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    windowElement.style.left = `${e.clientX - offsetX}px`;
+                    windowElement.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+
+        function changeWallpaper(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('wallpaperFile');
+            const urlInput = document.getElementById('wallpaperUrl');
+            const screen = document.getElementById('screen');
+            let wallpaperUrl = '';
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    wallpaperUrl = e.target.result;
+                    screen.style.backgroundImage = `url(${wallpaperUrl})`;
+                    localStorage.setItem('wallpaper', wallpaperUrl);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (urlInput.value) {
+                wallpaperUrl = urlInput.value;
+                screen.style.backgroundImage = `url(${wallpaperUrl})`;
+                localStorage.setItem('wallpaper', wallpaperUrl);
+            }
+
+            showWin('wallpaper', 'none');
+        }
+        makeWindowDraggable('pcWindow');
+        makeWindowDraggable('settingsPanel');
+        makeWindowDraggable('wallpaper');
+        makeWindowDraggable('colorControls')
+    </script>
+    <style>
+        .challDiv{
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 1.2vw;
+            
+            font-size: 1vw;
+        }
+    </style>
+</body>

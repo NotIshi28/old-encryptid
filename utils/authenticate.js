@@ -36,13 +36,12 @@ async function loginUser(req, res, next) {
     else {
       req.logIn(user, (err) => {
         if (err) throw err;
-        console.log('THIS IS USER!!!!!!!!!'+user)
         if(user.firstTime){
           res.redirect('/register');
         }
-        else if(user.isAdmin){
-          res.redirect('/admin');
-        }
+        // else if(user.isAdmin){
+        //   res.redirect('/admin');
+        // }
         else{
           res.redirect('/dashboard');
         }
