@@ -9,7 +9,6 @@ const cryptSchema = new Schema(
         lvlNo: {type:Number, required: true},
         lvlText: reqString,
         lvlImg: {type:String, default: "", required: false},
-        //level creator
         lvlCr: reqString,
         answer: reqString,
         points: {type:Number, required: true},
