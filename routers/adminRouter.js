@@ -153,7 +153,7 @@ router.post('/new', async (req, res) => {
 router.get('/logs/cryptic/:id', async (req, res) => {
     const lvlNo = req.params.id
     const level = await Crypt.findOne({lvlNo:lvlNo});
-    res.render('challLogViewerCrypt', { user: req.user, logs: level.logs, lvlNo,lvlNo });
+    res.render('challLogViewerCrypt', { user: req.user, logs: level.logs, lvlNo,lvlNo, title: level.title });
 });
 
 
@@ -189,7 +189,7 @@ router.post('/edit/cryptic/:id', async (req, res) => {
 router.get('/logs/ctf/:id', async (req, res) => {
     const lvlNo = req.params.id
     const level = await Ctf.findOne({lvlNo:lvlNo});
-    res.render('challLogViewerCtf', { user: req.user, logs: level.logs, lvlNo,lvlNo });
+    res.render('challLogViewerCtf', { user: req.user, logs: level.logs, lvlNo,lvlNo,title: level.title  });
 });
 
 

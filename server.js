@@ -29,7 +29,7 @@ app.use(express.static('public'))
 app.use(express.json({ limit: '1mb' }), express.urlencoded({ extended: true, limit: '1mb' }))
 app.use(flash())
 app.use(expressLayouts)
-app.use(express.static(__dirname + '/public'));
+app.use('/', express.static('public'))
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,

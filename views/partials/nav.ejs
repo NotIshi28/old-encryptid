@@ -1,0 +1,47 @@
+<div id="menu">
+    <div class="menuIt">
+        <% if (user) { %>
+            <div class="start" style="margin-left: 1vw;">
+                <a href="#" onclick="start();">  
+                    <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
+                    Start
+                </a>
+            </div>
+            <div class="settingsTb">
+                <a href="/">Home</a>
+            </div>
+            <div class="dashboard">
+                <a href="/dashboard" class="dropbtn">Dashboard</a>
+            </div>
+            <div class="settings">
+                <a href="#" onclick="showWin('settingsPanel','block');return false;">Settings</a>
+            </div>
+            <div class="logout">
+                <a href="/login/logout">Logout</a>
+            </div>	
+        <% } else{ %>
+            <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
+                <div class="start" style="margin-left: 1vw;">
+                    <a href="#" onclick="start();">  
+                        <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
+                        Start
+                    </a>
+                </div>
+                <div class="login">
+                    <a href="/login">  
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        <% } %>
+        <% if (user.isAdmin) { %>
+            <div class="admin">
+                <a href="/admin">Admin</a>
+        </div>	
+        <% } %>
+
+    </div>
+    <div class="menuIt clock">
+        <span id="clock">2024/10/07 11:27:17</span>
+    </div>
+</div>

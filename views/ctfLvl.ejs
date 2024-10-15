@@ -1,60 +1,8 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-</body>
-</html> -->
-
 <body>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <div id="screen">
         <div id="content">
-            <div id="menu">
-                <div class="menuIt">
-                    <% if (user) { %>
-                        <div class="start" style="margin-left: 1vw;">
-                            <a href="#" onclick="start();">  
-                                <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
-                                Start
-                            </a>
-                        </div>
-                        <div class="settingsTb">
-                            <a href="/">Home</a>
-                        </div>
-                        <div class="dashboard">
-                            <a href="#" onclick="showWin('pcWindow','block');return false;" class="dropbtn">Dashboard</a>
-                        </div>
-                        <div class="settings">
-                            <a href="#" onclick="showWin('settingsPanel','block');return false;">Settings</a>
-                        </div>
-                        <div class="logout">
-                            <a href="/login/logout">Logout</a>
-                        </div>	
-                    <% } else{ %>
-                        <div class="start" style="margin-left: 1vw; display: flex; flex-direction: row; gap:1.4vw">
-                            <div class="start" style="margin-left: 1vw;">
-                                <a href="#" onclick="start();">  
-                                    <img src="https://avatars.githubusercontent.com/u/50449253?s=200&v=4" alt="tech sundi" style="height: 2vw;">
-                                    Start
-                                </a>
-                            </div>
-                            <div class="login">
-                                <a href="/login">  
-                                    Get Started
-                                </a>
-                            </div>
-                        </div>
-                    <% } %>
-                    
-                </div>
-                <div class="menuIt clock">
-                    <span id="clock">2024/10/07 11:27:17</span>
-                </div>
-            </div>
+            <%- include('partials/nav.ejs') %>
             <div class="windowsGrp">
                 <div class="start">
                     <div class="start-menu" id="start-menu" style="display:none; position: absolute; bottom: 15%; left: -0.5vw; width: 20vw; background-color: #C0C0C0; border: 2px solid #000; z-index: 1000; box-shadow: 5px 5px 15px rgba(0,0,0,0.5);">
